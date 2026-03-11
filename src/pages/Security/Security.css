@@ -1,0 +1,167 @@
+.security {
+  animation: fadeIn 0.3s ease;
+}
+
+.security__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.security__card {
+  padding: 24px;
+}
+
+.security__card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Password section */
+.security__form-group {
+  margin-bottom: 16px;
+}
+
+.security__form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+/* 2FA section */
+.security__2fa-status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+
+.security__2fa-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.security__2fa-info { flex: 1; }
+
+.security__2fa-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.security__2fa-desc {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Sessions */
+.security__session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.security__session {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.security__session-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.security__session-info { flex: 1; }
+
+.security__session-device {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.security__session-details {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  margin-top: 1px;
+}
+
+.security__session-close {
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-error);
+  background: rgba(239, 68, 68, 0.08);
+  transition: all var(--transition-fast);
+}
+
+.security__session-close:hover {
+  background: var(--color-error);
+  color: #ffffff;
+}
+
+/* Activity log */
+.security__log-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.security__log-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.security__log-item:last-child {
+  border-bottom: none;
+}
+
+.security__log-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.security__log-text {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+}
+
+.security__log-time {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .security__grid {
+    grid-template-columns: 1fr;
+  }
+}

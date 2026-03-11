@@ -1,0 +1,220 @@
+.transactions {
+  animation: fadeIn 0.3s ease;
+}
+
+.transactions__filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.transactions__search {
+  flex: 1;
+  min-width: 200px;
+}
+
+.transactions__filter-select {
+  padding: 10px 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+  min-width: 150px;
+}
+
+.transactions__filter-select:focus {
+  border-color: var(--border-focus);
+}
+
+.transactions__export-btns {
+  display: flex;
+  gap: 8px;
+}
+
+/* Stats summary */
+.transactions__summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.transactions__summary-card {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.transactions__summary-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.transactions__summary-info {}
+
+.transactions__summary-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.transactions__summary-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Table */
+.transactions__table-wrapper {
+  padding: 0;
+  overflow: hidden;
+}
+
+.transactions__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions__table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.transactions__table td {
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.transactions__table tr:last-child td {
+  border-bottom: none;
+}
+
+.transactions__table tr:hover td {
+  background: var(--bg-hover);
+}
+
+.transactions__table-desc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.transactions__table-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.transactions__table-text {
+  font-weight: 600;
+}
+
+.transactions__table-sub {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  margin-top: 1px;
+}
+
+.transactions__amount--income {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.transactions__amount--expense {
+  color: var(--color-error);
+  font-weight: 700;
+}
+
+.transactions__amount--transfer {
+  color: var(--color-primary-light);
+  font-weight: 700;
+}
+
+/* Pagination */
+.transactions__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-primary);
+}
+
+.transactions__page-info {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.transactions__page-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.transactions__page-btn {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  transition: all var(--transition-fast);
+}
+
+.transactions__page-btn:hover {
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+}
+
+.transactions__page-btn--active {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .transactions__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .transactions__filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .transactions__table {
+    font-size: 0.8rem;
+  }
+
+  .transactions__table th:nth-child(4),
+  .transactions__table td:nth-child(4),
+  .transactions__table th:nth-child(5),
+  .transactions__table td:nth-child(5) {
+    display: none;
+  }
+}

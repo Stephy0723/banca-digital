@@ -1,42 +1,142 @@
-import "./Login.css"
-import { useNavigate } from "react-router-dom"
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { Shield, Zap, TrendingUp } from 'lucide-react';
+import logo from '../../assets/CoopEocala.jpg';
+import './Login.css';
 
-export default function Login(){
+type AuthMode = 'login' | 'register';
 
-const navigate = useNavigate()
+export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [mode, setMode] = useState<AuthMode>('login');
+  const [fullName, setFullName] = useState('Ana Martinez');
+  const [email, setEmail] = useState('ana@coopeocala.com');
+  const [password, setPassword] = useState('');
 
-return(
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-<div className="login-container">
+    const normalizedName =
+      fullName.trim() || email.split('@')[0].replace(/[._-]/g, ' ');
 
-<div className="login-box">
+    login({
+      email: email.trim() || 'socio@coopeocala.com',
+      fullName: normalizedName,
+    });
+    navigate('/dashboard');
+  }
 
-<h2 className="login-title">
-Banca en Línea
-</h2>
+  return (
+    <div className="auth-page">
+      <div className="auth-panel">
+        <img src={logo} alt="CoopEocala" className="auth-panel__logo" />
+        <span className="auth-panel__pill">Cooperativa Digital</span>
+        <h1>Construyendo estrategias para tu futuro financiero.</h1>
+        <p>
+          Accede a tu plataforma de servicios cooperativos. Tu información
+          se habilita solo al iniciar sesión o registrarte como socio.
+        </p>
 
-<input
-className="login-input"
-placeholder="Usuario"
-/>
+        <div className="auth-panel__highlights">
+          <article>
+            <div className="auth-panel__highlight-icon">
+              <Shield size={18} />
+            </div>
+            <div>
+              <strong>Seguridad activa</strong>
+              <span>Doble verificación y sesión protegida.</span>
+            </div>
+          </article>
+          <article>
+            <div className="auth-panel__highlight-icon">
+              <Zap size={18} />
+            </div>
+            <div>
+              <strong>Acceso rápido</strong>
+              <span>Gestiona tus ahorros, préstamos y servicios.</span>
+            </div>
+          </article>
+          <article>
+            <div className="auth-panel__highlight-icon">
+              <TrendingUp size={18} />
+            </div>
+            <div>
+              <strong>Tu cooperativa digital</strong>
+              <span>Ahorro, crédito y servicios múltiples en línea.</span>
+            </div>
+          </article>
+        </div>
+      </div>
 
-<input
-type="password"
-className="login-input"
-placeholder="Contraseña"
-/>
+      <div className="auth-card">
+        <div className="auth-tabs">
+          <button
+            type="button"
+            className={mode === 'login' ? 'auth-tab auth-tab--active' : 'auth-tab'}
+            onClick={() => setMode('login')}
+          >
+            Iniciar Sesión
+          </button>
+          <button
+            type="button"
+            className={mode === 'register' ? 'auth-tab auth-tab--active' : 'auth-tab'}
+            onClick={() => setMode('register')}
+          >
+            Hazte Socio
+          </button>
+        </div>
 
-<button
-className="login-button"
-onClick={()=>navigate("/dashboard")}
->
-Entrar
-</button>
+        <div className="auth-card__header">
+          <p className="auth-card__eyebrow">
+            {mode === 'login' ? 'Acceso de socios' : 'Nuevo socio'}
+          </p>
+          <h2>{mode === 'login' ? 'Bienvenido de vuelta' : 'Únete a CoopEocala'}</h2>
+          <p>
+            {mode === 'login'
+              ? 'Ingresa tus credenciales para acceder a tu cuenta cooperativa.'
+              : 'Regístrate como socio y accede a todos nuestros servicios.'}
+          </p>
+        </div>
 
-</div>
+        <form className="auth-form" onSubmit={handleSubmit}>
+          {mode === 'register' && (
+            <label className="auth-field">
+              <span>Nombre completo</span>
+              <input
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="Tu nombre completo"
+              />
+            </label>
+          )}
 
-</div>
+          <label className="auth-field">
+            <span>Correo electrónico</span>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="socio@coopeocala.com"
+            />
+          </label>
 
-)
+          <label className="auth-field">
+            <span>Contraseña</span>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Ingresa tu contraseña"
+            />
+          </label>
 
+          <button className="auth-submit" type="submit">
+            {mode === 'login' ? 'Acceder a mi cuenta' : 'Crear cuenta de socio'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }

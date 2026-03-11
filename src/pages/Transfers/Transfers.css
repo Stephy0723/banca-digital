@@ -1,0 +1,230 @@
+.transfers {
+  animation: fadeIn 0.3s ease;
+}
+
+.transfers__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.transfers__form-card {
+  padding: 24px;
+}
+
+.transfers__form-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.transfers__form-group {
+  margin-bottom: 16px;
+}
+
+.transfers__form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.transfers__select {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  appearance: none;
+  cursor: pointer;
+}
+
+.transfers__select:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.transfers__amount-wrapper {
+  position: relative;
+}
+
+.transfers__amount-currency {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-tertiary);
+}
+
+.transfers__amount-input {
+  padding-left: 50px !important;
+  font-size: 1.2rem !important;
+  font-weight: 700;
+}
+
+.transfers__summary {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.transfers__summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 0.85rem;
+}
+
+.transfers__summary-label {
+  color: var(--text-secondary);
+}
+
+.transfers__summary-value {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.transfers__summary-total {
+  border-top: 1px solid var(--border-primary);
+  margin-top: 8px;
+  padding-top: 10px;
+  font-size: 1rem;
+}
+
+.transfers__submit {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  font-size: 1rem;
+}
+
+/* Recent transfers */
+.transfers__recent {
+  padding: 24px;
+}
+
+.transfers__recent-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.transfers__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.transfers__contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.transfers__contact:hover {
+  background: var(--bg-hover);
+  transform: translateX(4px);
+}
+
+.transfers__contact-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.transfers__contact-info {
+  flex: 1;
+}
+
+.transfers__contact-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.transfers__contact-bank {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.transfers__contact-amount {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Success modal */
+.transfers__modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+.transfers__modal {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: var(--shadow-xl);
+  animation: scaleIn 0.2s ease;
+}
+
+.transfers__modal-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.transfers__modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.transfers__modal-message {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .transfers__grid {
+    grid-template-columns: 1fr;
+  }
+}

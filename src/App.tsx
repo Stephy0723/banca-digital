@@ -1,7 +1,15 @@
-import Router from './router/Router'
+import { ThemeProvider } from './context/ThemeContext';
+import { AuthProvider } from './context/AuthContext';
+import Router from './router/Router';
 
 function App() {
-  return <Router />
+  return (
+    <ThemeProvider>
+      <AuthProvider>
+        <Router />
+      </AuthProvider>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
