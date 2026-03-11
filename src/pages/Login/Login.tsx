@@ -33,10 +33,10 @@ export default function Login() {
       <div className="auth-panel">
         <img src={logo} alt="CoopEocala" className="auth-panel__logo" />
         <span className="auth-panel__pill">Cooperativa Digital</span>
-        <h1>Construyendo estrategias para tu futuro financiero.</h1>
+        <h1>Tu cooperativa digital, moderna y confiable.</h1>
         <p>
-          Accede a tu plataforma de servicios cooperativos. Tu información
-          se habilita solo al iniciar sesión o registrarte como socio.
+          Ahorro, crédito y servicios múltiples al alcance de tu mano.
+          Accede como socio para gestionar tus productos cooperativos.
         </p>
 
         <div className="auth-panel__highlights">
@@ -45,8 +45,8 @@ export default function Login() {
               <Shield size={18} />
             </div>
             <div>
-              <strong>Seguridad activa</strong>
-              <span>Doble verificación y sesión protegida.</span>
+              <strong>Certificada por la UAF</strong>
+              <span>Sujeto obligado con verificación segura.</span>
             </div>
           </article>
           <article>
@@ -54,8 +54,8 @@ export default function Login() {
               <Zap size={18} />
             </div>
             <div>
-              <strong>Acceso rápido</strong>
-              <span>Gestiona tus ahorros, préstamos y servicios.</span>
+              <strong>Servicios múltiples</strong>
+              <span>Ahorros, préstamos, seguros, recargas y marbetes.</span>
             </div>
           </article>
           <article>
@@ -63,8 +63,8 @@ export default function Login() {
               <TrendingUp size={18} />
             </div>
             <div>
-              <strong>Tu cooperativa digital</strong>
-              <span>Ahorro, crédito y servicios múltiples en línea.</span>
+              <strong>Financiamiento vehicular</strong>
+              <span>Hasta 80% del valor, plazos de hasta 60 meses.</span>
             </div>
           </article>
         </div>

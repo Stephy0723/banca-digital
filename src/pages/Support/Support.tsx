@@ -1,36 +1,46 @@
 import { useState, useRef, useEffect } from 'react';
 import type { ChatMessage } from '../../types';
+import { Phone, Mail, Building2, ChevronDown, Bot, Send } from 'lucide-react';
 import './Support.css';
 
 const faqs = [
   {
-    q: '¿Cómo realizo una transferencia a terceros?',
-    a: 'Ve a la sección de Transferencias, selecciona "A terceros", ingresa los datos del beneficiario, el monto y confirma la operación. Las transferencias son procesadas de forma inmediata.',
+    q: '¿Cómo me hago socio de CoopEocala?',
+    a: 'Puedes registrarte desde la plataforma digital o visitando nuestra oficina en Av. Gustavo Mejia Ricart No. 71, Edificio Caromang, Local 207, Piantini, Santo Domingo. Necesitarás tu cédula y un depósito inicial en aportaciones.',
   },
   {
-    q: '¿Cómo activo la autenticación de dos factores?',
-    a: 'Dirígete a Seguridad > Autenticación de Dos Factores y haz clic en "Activar 2FA". Puedes usar una app de autenticación, SMS o correo electrónico.',
+    q: '¿Qué tipos de ahorro ofrece CoopEocala?',
+    a: 'Ofrecemos: Ahorro Eocala (libre), Ahorro en Aportaciones, Ahorro Infantil, Ahorro Vía Nómina, Ahorro Programado y Certificados de Depósito a Plazo Fijo con tasas competitivas.',
   },
   {
-    q: '¿Cuáles son los límites de transferencia?',
-    a: 'Los límites dependen del tipo de cuenta: Cuenta de Ahorro hasta RD$500,000 diarios, Cuenta Corriente hasta RD$1,000,000 diarios. Puedes solicitar un aumento contactando soporte.',
+    q: '¿Cómo solicito un préstamo de nómina?',
+    a: 'Ve a la sección de Pagos > Préstamos o visita nuestra oficina. Los préstamos de nómina se descuentan directamente de tu salario. Puedes calcular tu cuota con nuestra calculadora en línea.',
   },
   {
-    q: '¿Cómo puedo exportar mis movimientos?',
-    a: 'En la sección de Transacciones, utiliza los botones de exportación (CSV o TXT) para descargar tu historial de movimientos filtrado.',
+    q: '¿Cómo funciona el financiamiento de vehículos?',
+    a: 'Financiamos hasta el 80% del valor del vehículo con plazos de hasta 60 meses. Incluye seguro vehicular. Consulta las tasas y requisitos en nuestra oficina o con el asistente virtual.',
   },
   {
-    q: '¿Qué hago si detecto una transacción no reconocida?',
-    a: 'Bloquea tu tarjeta inmediatamente desde la sección de Seguridad y contacta soporte a través del chat o llamando al *611. Investigaremos el caso en 24-48 horas.',
+    q: '¿Qué servicios puedo pagar desde la plataforma?',
+    a: 'Puedes pagar electricidad, agua, internet, teléfono, cable TV, gas, seguros de vehículo y salud, cuotas de préstamos, marbetes vehiculares, recargas telefónicas y servicios de factoring.',
+  },
+  {
+    q: '¿Cuál es el horario de atención?',
+    a: 'Lunes a viernes de 9:00 AM a 5:30 PM y sábados de 9:00 AM a 12:30 PM. La plataforma digital está disponible 24/7.',
   },
 ];
 
 const botResponses: Record<string, string> = {
-  hola: 'Hola! ¿En qué puedo ayudarte hoy? Puedo asistirte con transferencias, pagos, seguridad de tu cuenta y más.',
-  transferencia: 'Para realizar una transferencia, ve a la sección "Transferencias" en el menú lateral. Ahí podrás enviar dinero entre tus cuentas o a terceros.',
+  hola: 'Hola! Soy el asistente de CoopEocala. Puedo ayudarte con ahorros, préstamos, aportaciones, seguros, recargas y más.',
+  transferencia: 'Para realizar una transferencia, ve a la sección "Transferencias" en el menú lateral. Puedes enviar dinero entre tus cuentas de ahorro o a terceros.',
   contraseña: 'Para cambiar tu contraseña, ve a Seguridad > Cambiar Contraseña. Necesitarás tu contraseña actual y la nueva debe tener mínimo 8 caracteres.',
-  tarjeta: 'Puedes gestionar tus tarjetas desde la sección "Cuentas". Si necesitas bloquear tu tarjeta de emergencia, ve a "Seguridad".',
-  límite: 'Los límites de transferencia dependen de tu tipo de cuenta. Para solicitar un aumento, puedo escalarlo a un agente humano.',
+  préstamo: 'CoopEocala ofrece préstamos de nómina, préstamos personales y financiamiento de vehículos hasta 80% del valor. Puedes calcular tu cuota desde la plataforma.',
+  ahorro: 'Tenemos varias opciones: Ahorro Eocala, Ahorro Programado, Ahorro Infantil, Ahorro Vía Nómina y Certificados de Depósito a Plazo Fijo.',
+  aportación: 'Las aportaciones son tu participación como socio en la cooperativa. Son obligatorias y representan tu capital social en CoopEocala.',
+  vehículo: 'Ofrecemos financiamiento vehicular hasta el 80% del valor con plazos de hasta 60 meses, más seguro y marbete incluidos.',
+  seguro: 'Vendemos seguros de vehículos y puedes pagarlos directamente desde tu cuenta de ahorro. Consulta las opciones disponibles.',
+  marbete: 'Puedes comprar tu marbete vehicular desde la sección de Pagos > Servicios. Es rápido y seguro.',
+  recarga: 'Las recargas telefónicas están disponibles en la sección de Pagos > Recargas para todas las operadoras.',
 };
 
 export default function Support() {
@@ -39,7 +49,7 @@ export default function Support() {
     {
       id: '1',
       sender: 'agent',
-      message: 'Hola! Soy el asistente virtual de Banca Digital. ¿En qué puedo ayudarte hoy?',
+      message: 'Hola! Soy el asistente virtual de CoopEocala. ¿En qué puedo ayudarte hoy?',
       timestamp: new Date().toISOString(),
     },
   ]);
@@ -63,7 +73,6 @@ export default function Support() {
     setMessages(prev => [...prev, userMsg]);
     setInput('');
 
-    // Bot response
     setTimeout(() => {
       const lower = input.toLowerCase();
       let response = 'Gracias por tu mensaje. Déjame revisar eso para ti. ¿Podrías darme más detalles sobre tu consulta?';
@@ -100,19 +109,19 @@ export default function Support() {
           {/* Contact cards */}
           <div className="support__contact-cards">
             <div className="card-elevated support__contact-card">
-              <div className="support__contact-icon">📞</div>
+              <div className="support__contact-icon"><Phone size={22} /></div>
               <div className="support__contact-title">Llámanos</div>
-              <div className="support__contact-desc">*611 desde tu celular<br />24/7 disponible</div>
+              <div className="support__contact-desc">(809) 544-3140<br />(809) 443-3140</div>
             </div>
             <div className="card-elevated support__contact-card">
-              <div className="support__contact-icon">📧</div>
+              <div className="support__contact-icon"><Mail size={22} /></div>
               <div className="support__contact-title">Email</div>
-              <div className="support__contact-desc">soporte@bancadigital.com<br />Respuesta en 24h</div>
+              <div className="support__contact-desc">soporte@coopeocala.com<br />Respuesta en 24h</div>
             </div>
             <div className="card-elevated support__contact-card">
-              <div className="support__contact-icon">🏢</div>
-              <div className="support__contact-title">Sucursal</div>
-              <div className="support__contact-desc">Encuentra la más cercana<br />L-V 8am - 5pm</div>
+              <div className="support__contact-icon"><Building2 size={22} /></div>
+              <div className="support__contact-title">Oficina</div>
+              <div className="support__contact-desc">Piantini, Santo Domingo<br />L-V 9am - 5:30pm, S 9am - 12:30pm</div>
             </div>
           </div>
 
@@ -128,7 +137,7 @@ export default function Support() {
                   >
                     {faq.q}
                     <span className={`support__faq-arrow ${openFaq === i ? 'support__faq-arrow--open' : ''}`}>
-                      ▼
+                      <ChevronDown size={16} />
                     </span>
                   </button>
                   {openFaq === i && (
@@ -143,7 +152,7 @@ export default function Support() {
         {/* Chat */}
         <div className="card support__chat">
           <div className="support__chat-header">
-            <div className="support__chat-avatar">🤖</div>
+            <div className="support__chat-avatar"><Bot size={22} /></div>
             <div className="support__chat-info">
               <div className="support__chat-name">Asistente Virtual</div>
               <div className="support__chat-status">
@@ -176,7 +185,7 @@ export default function Support() {
               onKeyDown={e => e.key === 'Enter' && handleSend()}
             />
             <button className="support__chat-send" onClick={handleSend}>
-              ➤
+              <Send size={18} />
             </button>
           </div>
         </div>

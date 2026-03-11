@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { accounts, transactions, formatCurrency, formatDate } from '../../data/mockData';
 import type { Account } from '../../types';
+import Icon from '../../components/IconMap';
+import { X } from 'lucide-react';
 import './Accounts.css';
 
 export default function Accounts() {
@@ -9,11 +11,17 @@ export default function Accounts() {
   const getAccountTransactions = (accountId: string) =>
     transactions.filter(t => t.accountId === accountId);
 
+  const typeLabels: Record<string, string> = {
+    savings: 'Ahorro',
+    checking: 'Aportaciones',
+    credit: 'Préstamo',
+  };
+
   return (
     <div className="page-container accounts">
       <div className="page-header">
-        <h1>Mis Cuentas</h1>
-        <p>Gestiona y visualiza el detalle de tus productos bancarios</p>
+        <h1>Mis Productos Cooperativos</h1>
+        <p>Gestiona tus ahorros, aportaciones y préstamos como socio de CoopEocala</p>
       </div>
 
       <div className="accounts__grid">
@@ -25,10 +33,11 @@ export default function Accounts() {
           >
             <div className="accounts__card-header" style={{ background: `linear-gradient(135deg, ${account.color}, ${account.color}cc)` }}>
               <div className="accounts__card-type">
-                {account.icon} {account.type === 'savings' ? 'Ahorro' : account.type === 'checking' ? 'Corriente' : 'Crédito'}
+                <Icon name={account.icon} size={16} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+                {typeLabels[account.type]}
               </div>
               <div className="accounts__card-balance-label">
-                {account.balance >= 0 ? 'Balance Disponible' : 'Saldo a Pagar'}
+                {account.balance >= 0 ? 'Balance Disponible' : 'Saldo Pendiente'}
               </div>
               <div className="accounts__card-balance">
                 {formatCurrency(Math.abs(account.balance))}
@@ -36,6 +45,7 @@ export default function Accounts() {
               <div className="accounts__card-number">{account.number}</div>
             </div>
             <div className="accounts__card-body">
+              <div className="accounts__card-name">{account.name}</div>
               <div className="accounts__card-status">
                 <span className="accounts__card-status-dot" />
                 Activa
@@ -52,17 +62,21 @@ export default function Accounts() {
         <div className="card accounts__detail">
           <div className="accounts__detail-header">
             <h2 className="accounts__detail-title">
-              {selectedAccount.icon} Detalle - {selectedAccount.name}
+              Detalle - {selectedAccount.name}
             </h2>
-            <button className="btn btn-secondary" onClick={() => setSelectedAccount(null)}>Cerrar</button>
+            <button className="btn btn-secondary" onClick={() => setSelectedAccount(null)}>
+              <X size={16} /> Cerrar
+            </button>
           </div>
 
           <div className="accounts__detail-grid" style={{ marginBottom: 24 }}>
             <div className="accounts__detail-item">
-              <div className="accounts__detail-label">Tipo de Cuenta</div>
-              <div className="accounts__detail-value">
-                {selectedAccount.type === 'savings' ? 'Ahorro' : selectedAccount.type === 'checking' ? 'Corriente' : 'Crédito'}
-              </div>
+              <div className="accounts__detail-label">Tipo de Producto</div>
+              <div className="accounts__detail-value">{typeLabels[selectedAccount.type]}</div>
+            </div>
+            <div className="accounts__detail-item">
+              <div className="accounts__detail-label">Producto</div>
+              <div className="accounts__detail-value">{selectedAccount.name}</div>
             </div>
             <div className="accounts__detail-item">
               <div className="accounts__detail-label">Número</div>
@@ -86,7 +100,9 @@ export default function Accounts() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             {getAccountTransactions(selectedAccount.id).map(txn => (
               <div key={txn.id} className="dashboard__movement-item" style={{ padding: '10px 8px' }}>
-                <div className="dashboard__movement-icon">{txn.icon}</div>
+                <div className="dashboard__movement-icon">
+                  <Icon name={txn.icon} size={16} />
+                </div>
                 <div className="dashboard__movement-info">
                   <div className="dashboard__movement-desc">{txn.description}</div>
                   <div className="dashboard__movement-category">{txn.category} · {formatDate(txn.date)}</div>

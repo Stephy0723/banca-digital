@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { paymentServices, accounts, formatCurrency } from '../../data/mockData';
 import type { PaymentService } from '../../types';
+import Icon from '../../components/IconMap';
+import { CheckCircle, X } from 'lucide-react';
 import './Payments.css';
+
+const recentPayments = [
+  { icon: 'zap', name: 'Electricidad - EDENORTE', date: '09 Mar 2026', amount: 3450, color: '#f59e0b' },
+  { icon: 'droplets', name: 'Agua - CAASD', date: '08 Mar 2026', amount: 1200, color: '#3b82f6' },
+  { icon: 'wifi', name: 'Internet - Claro', date: '07 Mar 2026', amount: 2500, color: '#8b5cf6' },
+  { icon: 'credit', name: 'Tarjeta de Crédito', date: '05 Mar 2026', amount: 15000, color: '#7c3aed' },
+];
 
 export default function Payments() {
   const [activeCategory, setActiveCategory] = useState('Todos');
@@ -28,13 +37,6 @@ export default function Payments() {
     setAmount('');
     setReference('');
   };
-
-  const recentPayments = [
-    { icon: '⚡', name: 'Electricidad - EDENORTE', date: '09 Mar 2026', amount: 3450, color: '#f59e0b' },
-    { icon: '💧', name: 'Agua - CAASD', date: '08 Mar 2026', amount: 1200, color: '#3b82f6' },
-    { icon: '📡', name: 'Internet - Claro', date: '07 Mar 2026', amount: 2500, color: '#8b5cf6' },
-    { icon: '💳', name: 'Tarjeta de Crédito', date: '05 Mar 2026', amount: 15000, color: '#7c3aed' },
-  ];
 
   return (
     <div className="page-container payments">
@@ -68,7 +70,7 @@ export default function Payments() {
               className="payments__service-icon"
               style={{ background: `${service.color}15`, color: service.color }}
             >
-              {service.icon}
+              <Icon name={service.icon} size={22} />
             </div>
             <div className="payments__service-name">{service.name}</div>
             <div className="payments__service-category">{service.category}</div>
@@ -82,8 +84,8 @@ export default function Payments() {
         <div className="payments__recent-list">
           {recentPayments.map((payment, i) => (
             <div key={i} className="payments__recent-item">
-              <div className="payments__recent-icon" style={{ background: `${payment.color}15` }}>
-                {payment.icon}
+              <div className="payments__recent-icon" style={{ background: `${payment.color}15`, color: payment.color }}>
+                <Icon name={payment.icon} size={18} />
               </div>
               <div className="payments__recent-info">
                 <div className="payments__recent-name">{payment.name}</div>
@@ -101,9 +103,11 @@ export default function Payments() {
           <form className="payments__modal" onClick={e => e.stopPropagation()} onSubmit={handlePay}>
             <div className="payments__modal-header">
               <div className="payments__modal-title">
-                {selectedService.icon} Pagar {selectedService.name}
+                <Icon name={selectedService.icon} size={18} /> Pagar {selectedService.name}
               </div>
-              <button type="button" className="payments__modal-close" onClick={() => setSelectedService(null)}>✕</button>
+              <button type="button" className="payments__modal-close" onClick={() => setSelectedService(null)}>
+                <X size={18} />
+              </button>
             </div>
 
             <div className="payments__form-group">
@@ -150,7 +154,9 @@ export default function Payments() {
       {showSuccess && (
         <div className="payments__modal-overlay" onClick={handleClose}>
           <div className="payments__modal" onClick={e => e.stopPropagation()} style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '3rem', marginBottom: 16 }}>✅</div>
+            <div style={{ marginBottom: 16 }}>
+              <CheckCircle size={48} style={{ color: 'var(--color-accent)' }} />
+            </div>
             <div className="payments__modal-title" style={{ justifyContent: 'center', fontSize: '1.25rem', marginBottom: 8 }}>
               Pago Exitoso
             </div>

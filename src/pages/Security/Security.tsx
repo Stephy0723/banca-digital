@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import {
+  KeyRound, ShieldCheck, ShieldAlert, CheckCircle,
+  Monitor, Smartphone, Globe, ClipboardList
+} from 'lucide-react';
 import './Security.css';
 
 export default function Security() {
@@ -6,9 +10,9 @@ export default function Security() {
   const [showPasswordSuccess, setShowPasswordSuccess] = useState(false);
 
   const sessions = [
-    { device: '💻', name: 'Chrome - Windows 11', location: 'Santo Domingo, DO', time: 'Ahora (sesión actual)', current: true },
-    { device: '📱', name: 'Safari - iPhone 15', location: 'Santo Domingo, DO', time: 'Hace 2 horas', current: false },
-    { device: '💻', name: 'Firefox - MacOS', location: 'Santiago, DO', time: 'Hace 1 día', current: false },
+    { icon: Monitor, name: 'Chrome - Windows 11', location: 'Santo Domingo, DO', time: 'Ahora (sesión actual)', current: true },
+    { icon: Smartphone, name: 'Safari - iPhone 15', location: 'Santo Domingo, DO', time: 'Hace 2 horas', current: false },
+    { icon: Monitor, name: 'Firefox - MacOS', location: 'Santiago, DO', time: 'Hace 1 día', current: false },
   ];
 
   const activityLog = [
@@ -44,7 +48,7 @@ export default function Security() {
       <div className="security__grid">
         {/* Change password */}
         <form className="card security__card" onSubmit={handleChangePassword}>
-          <h2 className="security__card-title">🔑 Cambiar Contraseña</h2>
+          <h2 className="security__card-title"><KeyRound size={18} /> Cambiar Contraseña</h2>
 
           <div className="security__form-group">
             <label className="security__form-label">Contraseña actual</label>
@@ -64,22 +68,22 @@ export default function Security() {
           </button>
 
           {showPasswordSuccess && (
-            <div className="badge badge-success" style={{ marginTop: 12, padding: '8px 14px', fontSize: '0.82rem' }}>
-              ✅ Contraseña actualizada exitosamente
+            <div className="badge badge-success" style={{ marginTop: 12, padding: '8px 14px', fontSize: '0.82rem', display: 'flex', alignItems: 'center', gap: 6 }}>
+              <CheckCircle size={14} /> Contraseña actualizada exitosamente
             </div>
           )}
         </form>
 
         {/* 2FA */}
         <div className="card security__card">
-          <h2 className="security__card-title">🛡️ Autenticación de Dos Factores</h2>
+          <h2 className="security__card-title"><ShieldCheck size={18} /> Autenticación de Dos Factores</h2>
 
           <div className="security__2fa-status">
             <div
               className="security__2fa-icon"
-              style={{ background: twoFA ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)' }}
+              style={{ background: twoFA ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)', color: twoFA ? 'var(--color-accent)' : 'var(--color-error)' }}
             >
-              {twoFA ? '✅' : '⚠️'}
+              {twoFA ? <ShieldCheck size={24} /> : <ShieldAlert size={24} />}
             </div>
             <div className="security__2fa-info">
               <div className="security__2fa-title">
@@ -106,9 +110,13 @@ export default function Security() {
               Métodos disponibles:
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {['📱 App de autenticación (Google Auth, Authy)', '📧 Código por email', '💬 Código por SMS'].map(m => (
-                <div key={m} style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 6 }}>
-                  {m}
+              {[
+                { icon: Smartphone, label: 'App de autenticación (Google Auth, Authy)' },
+                { icon: Globe, label: 'Código por email' },
+                { icon: Smartphone, label: 'Código por SMS' },
+              ].map((m, i) => (
+                <div key={i} style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <m.icon size={14} /> {m.label}
                 </div>
               ))}
             </div>
@@ -117,11 +125,13 @@ export default function Security() {
 
         {/* Active sessions */}
         <div className="card security__card">
-          <h2 className="security__card-title">💻 Sesiones Activas</h2>
+          <h2 className="security__card-title"><Monitor size={18} /> Sesiones Activas</h2>
           <div className="security__session-list">
             {sessions.map((session, i) => (
               <div key={i} className="security__session">
-                <span className="security__session-icon">{session.device}</span>
+                <span className="security__session-icon" style={{ color: 'var(--text-secondary)' }}>
+                  <session.icon size={20} />
+                </span>
                 <div className="security__session-info">
                   <div className="security__session-device">
                     {session.name}
@@ -141,7 +151,7 @@ export default function Security() {
 
         {/* Activity log */}
         <div className="card security__card">
-          <h2 className="security__card-title">📋 Registro de Actividad</h2>
+          <h2 className="security__card-title"><ClipboardList size={18} /> Registro de Actividad</h2>
           <div className="security__log-list">
             {activityLog.map((log, i) => (
               <div key={i} className="security__log-item">
