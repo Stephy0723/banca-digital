@@ -1,0 +1,399 @@
+.home-page {
+  min-height: 100vh;
+  position: relative;
+}
+
+.home-page::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: var(--hero-glow);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Hero ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 52px;
+  align-items: center;
+  padding: 72px 52px 64px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: var(--primary-dim);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.78rem;
+  margin-bottom: 18px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.hero__content h1 {
+  font-size: 3.1rem;
+  font-weight: 800;
+  line-height: 1.08;
+  margin-bottom: 18px;
+  color: var(--heading);
+  letter-spacing: -0.03em;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__content p {
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  max-width: 480px;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+.hero__buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.hero__trust {
+  display: flex;
+  gap: 24px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.trust-item svg { color: var(--primary); }
+
+/* ── Coop Card ── */
+.hero__visual {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.hero__visual::before {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(50px);
+  z-index: 0;
+}
+
+.coop-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--card-gradient);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-xl);
+  padding: 30px 26px;
+  color: white;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.coop-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(45,162,72,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.coop-card::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -30px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,193,1,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.coop-card__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 28px;
+  opacity: 0.85;
+  position: relative;
+  z-index: 1;
+}
+
+.coop-card__balance { position: relative; z-index: 1; }
+.coop-card__balance p {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+.coop-card__balance h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.coop-card__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+  font-size: 0.73rem;
+  opacity: 0.4;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Features ── */
+.features {
+  padding: 72px 52px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.features__header {
+  text-align: center;
+  margin-bottom: 44px;
+}
+.features__header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--heading);
+  letter-spacing: -0.02em;
+}
+.features__header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.feature-card {
+  padding: 26px 22px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.25s;
+}
+.feature-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.feature-card__icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--primary-dim);
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+.feature-card__icon--gold {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+.feature-card__icon--accent {
+  background: rgba(108,92,231,0.12);
+  color: #6c5ce7;
+}
+
+.feature-card h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--heading);
+}
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+/* ── CTA ── */
+.cta-section {
+  padding: 20px 52px 72px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box {
+  background: var(--card-gradient);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-xl);
+  padding: 52px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 250px;
+  background: radial-gradient(ellipse, rgba(45,162,72,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-box h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  position: relative;
+  letter-spacing: -0.02em;
+}
+.cta-box p {
+  opacity: 0.75;
+  max-width: 440px;
+  margin: 0 auto 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.cta-info {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 24px;
+  position: relative;
+}
+.cta-info span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  position: relative;
+}
+
+.cta-box .btn--gold {
+  background: var(--accent);
+  color: #0b2a41;
+}
+
+/* ── Footer ── */
+.home-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 52px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--heading);
+  flex-shrink: 0;
+}
+.footer-brand svg { color: var(--primary); }
+
+.footer-info p {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.footer-copy {
+  color: var(--muted);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 52px 24px 44px;
+    text-align: center;
+    gap: 36px;
+  }
+  .hero__content p { margin-left:auto; margin-right:auto; }
+  .hero__buttons { justify-content:center; }
+  .hero__trust { justify-content:center; }
+  .hero__visual { order:-1; }
+  .coop-card { max-width:290px; }
+  .features__grid { grid-template-columns: repeat(2,1fr); }
+  .features, .cta-section { padding-left:24px; padding-right:24px; }
+  .cta-box { padding:36px 24px; }
+  .cta-buttons { flex-direction:column; align-items:center; }
+  .cta-info { flex-direction:column; gap:6px; }
+  .footer-content { flex-direction:column; text-align:center; }
+  .home-footer { padding:24px; }
+}
+
+@media (max-width: 540px) {
+  .hero__content h1 { font-size:2.1rem; }
+  .features__header h2 { font-size:1.5rem; }
+  .features__grid { grid-template-columns:1fr; }
+  .hero__buttons { flex-direction:column; align-items:center; }
+}
